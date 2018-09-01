@@ -4,7 +4,7 @@
 
 const image = docker.image
 
-describe('Test Image Module', function() {
+describe('Test Image Compoment', function() {
   it('create', function(done) {
     image
       .create('wujjpp/hello-node', 'latest')

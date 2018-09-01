@@ -8,7 +8,7 @@ import { expect } from 'chai'
 
 const service = docker.service
 
-describe('Test Service Module', function() {
+describe('Test Service Compoment', function() {
   it('create', function(done) {
     let params = {
       Name: 'hello-node',

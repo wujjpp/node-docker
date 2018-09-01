@@ -34,7 +34,10 @@ module.exports = {
   'globals': {
     'describe': true,
     'it': true,
+    'docker': true,
+    'after': true,
+    'before': true,
     'beforeEach': true,
-    'docker': true
+    'afterEach': true
   }
 }

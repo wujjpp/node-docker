@@ -8,7 +8,7 @@ import Promise from 'bluebird'
 const container = docker.container
 const image = docker.image
 
-describe('Test Container Module', function() {
+describe('Test Container Compoment', function() {
   it('create', function(done) {
     let params = {
       Image: 'wujjpp/hello-node:latest',

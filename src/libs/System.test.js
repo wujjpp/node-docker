@@ -5,7 +5,7 @@
 import { expect } from 'chai'
 const system = docker.system
 
-describe('Test System Module', function() {
+describe('Test System Compoment', function() {
   // it('auth', function(done) {
   //   system
   //     .auth('root', '******', '******')

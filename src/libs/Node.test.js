@@ -6,7 +6,7 @@ import Promise from 'bluebird'
 
 const node = docker.node
 
-describe('Test Node Module', function() {
+describe('Test Node Compoment', function() {
   it('ls', function(done) {
     node
       .ls()
