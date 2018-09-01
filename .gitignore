@@ -1,0 +1,10 @@
+// build
+node_modules
+.cache
+.git
+.tern-project
+npm-debug.log
+package-lock.json
+src/env.json
+.scannerwork
+.sonarlint
