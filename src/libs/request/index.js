@@ -5,10 +5,18 @@
 import axios from 'axios'
 import responseInterceptor from './interceptors/response'
 
+let defaultConfig = {
+  timeout: 1000 * 60 * 5,
+  socketPath: '/var/run/docker.sock',
+  baseURL: 'http:/v1.38'
+}
+
 const createRequest = endpoint => {
-  let requestConfig = {
-    timeout: 1000 * 60 * 5,
-    baseURL: endpoint
+  let requestConfig = { ...defaultConfig }
+
+  if (endpoint) {
+    requestConfig.socketPath = null
+    requestConfig.baseURL = endpoint
   }
 
   const client = axios.create(requestConfig)
@@ -18,9 +26,7 @@ const createRequest = endpoint => {
   return client
 }
 
-const dockerEndpoint = 'http://192.168.31.128:2376'
-
-export default createRequest(dockerEndpoint)
+export default createRequest
 
 export {
   createRequest
