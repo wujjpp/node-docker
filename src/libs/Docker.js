@@ -8,6 +8,7 @@ import Node from './Node'
 import Service from './Service'
 import System from './System'
 import Network from './Network'
+import Volume from './Volume'
 
 import {createRequest} from './request'
 
@@ -21,5 +22,6 @@ export default class Docker {
     this.service = new Service(this.request)
     this.system = new System(this.request)
     this.network = new Network(this.request)
+    this.volume = new Volume(this.request)
   }
 }

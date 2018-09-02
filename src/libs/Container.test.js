@@ -15,13 +15,13 @@ describe('Test Container Compoment', function() {
       ExposedPorts: {
         '9000/tcp': { }
       },
-      Volumes: {
-        '/data': { }
-      },
+      // Volumes: {
+      //   '/data': { }
+      // },
       HostConfig: {
-        Binds: [
-          '/data:/data'
-        ],
+        // Binds: [
+        //   '/data:/data'
+        // ],
         PortBindings: {
           '9000/tcp': [
             {
@@ -171,9 +171,6 @@ describe('Test Container Compoment', function() {
       Image: 'wujjpp/hello-node:latest',
       ExposedPorts: {
         '9000/tcp': { }
-      },
-      Volumes: {
-        '/data': { }
       },
       HostConfig: {
       },
