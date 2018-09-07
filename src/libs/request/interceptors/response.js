@@ -11,11 +11,11 @@ export default [
     if (error.response) {
       if (error.response.data.message) {
         let err = new Error(error.response.data.message)
-        err.status = error.status
+        err.status = error.response.status
         return Promise.reject(err)
       } else {
         let err = new Error(error.response.data || 'Unknow error')
-        err.status = error.status
+        err.status = error.response.status
         return Promise.reject(err)
       }
     }
