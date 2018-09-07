@@ -10,11 +10,17 @@ export default [
   error => {
     if (error.response) {
       if (error.response.data.message) {
-        return Promise.reject(new Error(error.response.data.message))
+        let err = new Error(error.response.data.message)
+        err.status = error.status
+        return Promise.reject(err)
       } else {
-        return Promise.reject(error.response.data)
+        let err = new Error(error.response.data || 'Unknow error')
+        err.status = error.status
+        return Promise.reject(err)
       }
     }
-    return Promise.reject(new Error('request error'))
+    let err = new Error('request error')
+    err.status = -1
+    return Promise.reject(err)
   }
 ]
