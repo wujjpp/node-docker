@@ -148,11 +148,11 @@ describe('Test Image Compoment', function() {
   })
 
   it('export', function(done) {
-    let imageName = 'wujjpp/hello-node'
+    let imageName = 'wujjpp/hello-node:latest'
     image
       .export(imageName)
       .then(stream => {
-        let fileName = '/usr/local/app/a.tar'
+        let fileName = 'd:\\a.tar'
         return new Promise((resolve, reject) => {
           fs.open(fileName, 'w', (err, fd) => {
             if (err) {

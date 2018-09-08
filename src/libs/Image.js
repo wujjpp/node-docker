@@ -94,8 +94,8 @@ export default class Image extends Compoment {
     return this.request.post(`/images/prune?filters=${encodeURIComponent(JSON.stringify(filters))}`)
   }
 
-  export(idOrName) {
-    return this.request.get(`/images/${idOrName}/get`, {
+  export(names) {
+    return this.request.get(`/images/get?names=${encodeURIComponent(names)}`, {
       responseType: 'stream'
     })
   }
