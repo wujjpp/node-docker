@@ -56,11 +56,11 @@ export default class Node extends Compoment {
   }
 
   promote(idOrName) {
-    return this.update(idOrName, {Role: 'manager'})
+    return this.update(idOrName, { Role: 'manager' })
   }
 
   demote(idOrName) {
-    return this.update(idOrName, {Role: 'worker'})
+    return this.update(idOrName, { Role: 'worker' })
   }
 
   labelAdd(idOrName, labels) {

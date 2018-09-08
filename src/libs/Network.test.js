@@ -75,8 +75,8 @@ describe('Test Network Compoment', function() {
   // https://docs.docker.com/engine/api/v1.37/#operation/NetworkList
   it('ls with filter', function(done) {
     let filters = {
-      name: {host: true},
-      scope: {'swarm': true, 'global': true, 'local': true}
+      name: { host: true },
+      scope: { 'swarm': true, 'global': true, 'local': true }
     }
     network.ls(filters)
       .then(networks => {
@@ -158,7 +158,7 @@ describe('Test Network Compoment', function() {
         return network.create(params)
       })
       .then(() => {
-        return network.connect('test-connect-net', {Container: 'hello-node'})
+        return network.connect('test-connect-net', { Container: 'hello-node' })
       })
       .then(() => {
         done()

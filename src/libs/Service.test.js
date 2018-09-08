@@ -60,7 +60,7 @@ describe('Test Service Compoment', function() {
   })
 
   it('ls with filter', function(done) {
-    let filter = {name: {'hello-node': true}}
+    let filter = { name: { 'hello-node': true } }
     service
       .ls(filter)
       .then(services => {

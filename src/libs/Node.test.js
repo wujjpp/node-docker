@@ -149,7 +149,7 @@ describe('Test Node Compoment', function() {
       .ls(filters)
       .then(([node0]) => {
         nodeId = node0.ID
-        return node.labelAdd(nodeId, {foo: 'bar'})
+        return node.labelAdd(nodeId, { foo: 'bar' })
       })
       .then(() => {
         return node.inspect(nodeId)
