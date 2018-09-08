@@ -23,7 +23,13 @@ export default class Image extends Compoment {
   }
 
   ls(all = false, filters = {}, digest = false) {
-    return this.request.get('/images/json')
+    return this.request.get('/images/json', {
+      params: {
+        all,
+        filters,
+        digest
+      }
+    })
   }
 
   build(params, compresseType = 'identity', credentials = null) {
