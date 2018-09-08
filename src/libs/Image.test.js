@@ -4,6 +4,7 @@
 
 import { expect } from 'chai'
 import _ from 'lodash'
+import fs from 'fs'
 
 const image = docker.image
 
@@ -24,6 +25,17 @@ describe('Test Image Compoment', function() {
       .ls()
       .then(images => {
         expect(images.length).to.be.greaterThan(0)
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
+  it('cleanBuildCache', function(done) {
+    image
+      .cleanBuildCache()
+      .then(() => {
         done()
       })
       .catch(err => {
@@ -135,9 +147,35 @@ describe('Test Image Compoment', function() {
       })
   })
 
-  it('prune', function(done) {
+  it('export', function(done) {
+    let imageName = 'wujjpp/hello-node'
     image
-      .prune({ dangling: { 'false': true } })
+      .export(imageName)
+      .then(stream => {
+        let fileName = '/root/a.tar'
+        return new Promise((resolve, reject) => {
+          fs.open(fileName, 'w', (err, fd) => {
+            if (err) {
+              done(err)
+            } else {
+              stream.on('data', chunk => {
+                fs.writeSync(fd, chunk)
+              })
+              stream.on('end', () => {
+                fs.closeSync(fd)
+                resolve()
+              })
+              stream.on('error', err => {
+                fs.closeSync(fd)
+                if (fs.existsSync(fileName)) {
+                  fs.unlinkSync(fileName)
+                }
+                done(err)
+              })
+            }
+          })
+        })
+      })
       .then(() => {
         done()
       })
@@ -146,9 +184,9 @@ describe('Test Image Compoment', function() {
       })
   })
 
-  it('cleanBuildCache', function(done) {
+  it('prune', function(done) {
     image
-      .cleanBuildCache()
+      .prune({ dangling: { 'false': true } })
       .then(() => {
         done()
       })

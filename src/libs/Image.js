@@ -93,4 +93,10 @@ export default class Image extends Compoment {
   prune(filters = { dangling: { 'true': true } }) {
     return this.request.post(`/images/prune?filters=${encodeURIComponent(JSON.stringify(filters))}`)
   }
+
+  export(idOrName) {
+    return this.request.get(`/images/${idOrName}/get`, {
+      responseType: 'stream'
+    })
+  }
 }
