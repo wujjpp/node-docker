@@ -147,6 +147,7 @@ describe('Test Image Compoment', function() {
       })
   })
 
+  // TODO: The export image cannot run
   it('export', function(done) {
     let imageName = 'wujjpp/hello-node:latest'
     image
