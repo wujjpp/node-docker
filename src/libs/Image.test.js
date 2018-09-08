@@ -152,7 +152,7 @@ describe('Test Image Compoment', function() {
     image
       .export(imageName)
       .then(stream => {
-        let fileName = '/root/a.tar'
+        let fileName = '/usr/local/app/a.tar'
         return new Promise((resolve, reject) => {
           fs.open(fileName, 'w', (err, fd) => {
             if (err) {
