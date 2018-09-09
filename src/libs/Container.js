@@ -83,10 +83,14 @@ export default class Container extends Compoment {
     return this.request.get(`/containers/${idOrName}/changes`)
   }
 
+  export(idOrName) {
+    throw new Error('Not Implement')
+  }
+
   stats(idOrName, stream = false) {
     return this.request.get(`/containers/${idOrName}/stats`, {
       params: {
-        stream: false
+        stream
       }
     })
   }

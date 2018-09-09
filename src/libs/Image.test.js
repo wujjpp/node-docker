@@ -62,8 +62,6 @@ describe('Test Image Compoment', function() {
       })
   })
 
-
-
   it('inspect', function(done) {
     let imageName = 'wujjpp/hello-node:latest'
     image
@@ -147,11 +145,10 @@ describe('Test Image Compoment', function() {
       })
   })
 
-  // TODO: The export image cannot run
   it('export', function(done) {
-    let imageName = 'wujjpp/hello-node:latest'
+    let imageNames = ['wujjpp/hello-node:latest']
     image
-      .export(imageName)
+      .export(imageNames)
       .then(stream => {
         let fileName = 'd:\\a.tar'
         return new Promise((resolve, reject) => {
@@ -177,6 +174,17 @@ describe('Test Image Compoment', function() {
           })
         })
       })
+      .then(() => {
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
+  it('load', function(done) {
+    image
+      .load('d:\\a.tar')
       .then(() => {
         done()
       })

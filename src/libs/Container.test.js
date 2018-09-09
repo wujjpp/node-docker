@@ -104,7 +104,17 @@ describe('Test Container Compoment', function() {
     container
       .diff('hello-node')
       .then(o => {
-        expect(o.length).to.be.greaterThan(0)
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+
+  it('export', function(done) {
+    container
+      .export('hello-node')
+      .then(o => {
         done()
       })
       .catch(err => {
@@ -129,6 +139,17 @@ describe('Test Container Compoment', function() {
         done(err)
       })
   })
+
+  // it('statsStream', function(done) {
+  //   container
+  //     .stats('hello-node', true)
+  //     .then(stream => {
+  //       stream.pipe(process.stdout)
+  //     })
+  //     .catch(err => {
+  //       done(err)
+  //     })
+  // })
 
   it('stop', function(done) {
     container

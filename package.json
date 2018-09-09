@@ -42,7 +42,7 @@
     "clean": "babel-node ./tools/run clean",
     "build": "cross-env NODE_ENV=production babel-node --max-old-space-size=7168 ./tools/run build",
     "test": "mocha -t 100000 \"src/**/*.test.js\" --require babel-register --require tests/setup.js",
-    "test2": "mocha -t 100000 \"src/libs/Image.test.js\" --require babel-register --require tests/setup.js",
+    "test2": "mocha -t 100000 \"src/libs/Container.test.js\" --require babel-register --require tests/setup.js",
     "eslint": "eslint \"src/**/*.js\"",
     "eslint-fix": "eslint --fix \"src/**/*.js\""
   },

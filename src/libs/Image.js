@@ -3,6 +3,8 @@
  */
 
 import Compoment from './Compoment'
+import fs from 'fs'
+import _ from 'lodash'
 
 export default class Image extends Compoment {
   create(image, tag = 'latest', credentials = null) {
@@ -100,9 +102,41 @@ export default class Image extends Compoment {
     return this.request.post(`/images/prune?filters=${encodeURIComponent(JSON.stringify(filters))}`)
   }
 
-  export(names) {
-    return this.request.get(`/images/get?names=${encodeURIComponent(names)}`, {
+  export(names = []) {
+    let params = ''
+    _.each(names, (o, n) => {
+      params += `${n === 0 ? '' : '&'}names=${encodeURIComponent(o)}`
+    })
+
+    return this.request.get(`/images/get?${params}`, {
       responseType: 'stream'
+    })
+  }
+
+  load(archive) {
+    return new Promise((resolve, reject) => {
+      if (fs.existsSync(archive)) {
+        let readStream = fs.createReadStream(archive)
+        this.request
+          .post('/images/load', readStream, {
+            maxContentLength: 1024 * 1024 * 1024, // 1G
+            headers: {
+              'Content-Type': 'application/octet-stream'
+            }
+          })
+          .then(() => {
+            readStream && readStream.close()
+            resolve()
+          })
+          .catch(err => {
+            readStream && readStream.close()
+            reject(err)
+          })
+      } else {
+        let error = new Error(`tar file ${archive} doesn't exist`)
+        error.status = -1
+        reject(error)
+      }
     })
   }
 }
