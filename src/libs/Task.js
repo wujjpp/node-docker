@@ -6,23 +6,21 @@ import Compoment from './Compoment'
 
 export default class Task extends Compoment {
   /**
-   *
-   * desired-state=(running | shutdown | accepted)
-   * id=<task id>
-   * label=key or label="key=value"
-   * name=<task name>
-   * node=<node id or name>
-   * service=<service name>
-   */
-  ls(serviceName, desiredState, taskId, label, taskName, node) {
+    *
+    * desired-state=(running | shutdown | accepted)
+    * id=<task id>
+    * label=key or label="key=value"
+    * name=<task name>
+    * node=<node id or name>
+    * service=<service name>
+    * example:
+    * { 'desired-state': { running: true } }
+    */
+
+  ls(filters = {}) {
     return this.request.get('/tasks', {
       params: {
-        'desired-state': desiredState,
-        id: taskId,
-        label,
-        name: taskName,
-        node,
-        service: serviceName
+        filters
       }
     })
   }
@@ -35,3 +33,4 @@ export default class Task extends Compoment {
     })
   }
 }
+
